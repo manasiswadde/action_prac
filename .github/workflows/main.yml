@@ -1,19 +1,14 @@
 name: Push Trigger
 
 on:
-  push:
+  push:  # Trigger this workflow on any push to any branch
     branches:
-      - main  # or your default branch
+      - '**'
 
 jobs:
-  show-push-info:
+  say-hello:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Show pushed files
-      run: |
-        echo "The following files were pushed:"
-        git diff --name-only ${{ github.event.before }} ${{ github.sha }}
+      - name: Print a message
+        run: echo "✅ A commit was pushed, and this action ran successfully!"
